@@ -4,5 +4,5 @@ import App from './App'
 export {default as Article} from './App'
 
 export const ExampleComponent = ({ text }) => {
-  return <div> <App /> </div>
+  return <App /> 
 }
