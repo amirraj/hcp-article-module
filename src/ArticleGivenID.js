@@ -5,10 +5,10 @@ import Accordion from "./Accordion";
 import "./styles.css";
 
 
-const Articles = () => (
+const ArticlesID = (props) => (
     <Query query={gql`
-        {
-            getAllArticles{
+        query getSingle($uuid : String!){
+            getArticleById(uuid:$uuid){
                 id
                 author_name
                 article_title
@@ -20,7 +20,7 @@ const Articles = () => (
                 uuid
   }
 }
-    `}
+    `} variables = {{"uuid": `${props.uuid}`}}
     >
         {({loading, error, data}) => {
             if (loading) return <p>Loading ...</p>;
@@ -30,7 +30,7 @@ const Articles = () => (
             }
             
 
-             return data.getAllArticles.map(({id,
+             return data.getArticleById.map(({id,
                 author_name,
                 article_title,
                 article_abstract,
@@ -44,7 +44,6 @@ const Articles = () => (
                     title={`${article_title}. Citation Count: ${citation_count}`}
                     content={article_abstract}
                   />
-                     {/* <p>{`${article_title} by ${author_name}. citaion : ${citation_count}`}</p> */}
                 </div>
             ));
     
@@ -52,4 +51,4 @@ const Articles = () => (
     </Query>
 );
 
-export default Articles;
+export default ArticlesID;

@@ -1,8 +1,18 @@
-import React from 'react'
-import styles from './styles.module.css'
-import App from './App'
-export {default as Article} from './App'
+import React from 'react';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
+import ArticlesID from './ArticleGivenID';
 
-export const ExampleComponent = ({ text }) => {
-  return <App /> 
-}
+const client = new ApolloClient({
+  uri: "http://localhost:5000/graphql"
+});
+
+
+const Article = (props) => (
+  <ApolloProvider client={client}>
+        <ArticlesID uuid= {`${props.uuid}`}/>    
+  </ApolloProvider>
+)
+
+
+export default Article;
