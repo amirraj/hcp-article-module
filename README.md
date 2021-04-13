@@ -15,12 +15,12 @@ npm install --save hcp-article-module
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'hcp-article-module'
-import 'hcp-article-module/dist/index.css'
+import Article from 'hcp-article-module'
+import 'Accordion.css'
 
 class Example extends Component {
   render() {
-    return <MyComponent />
+    return <Article uuid="WDEM05745991" oneKeyID="WDED03216911" uri="http://localhost:5000/graphql/>
   }
 }
 ```

@@ -7,8 +7,8 @@ import "./styles.css";
 
 const ArticlesID = (props) => (
     <Query query={gql`
-        query getSingle($uuid : String!){
-            getArticleById(uuid:$uuid){
+        query getSingle($uuid : String, $oneKeyID: String){
+            getArticleById(uuid:$uuid, oneKeyID:$oneKeyID){
                 id
                 author_name
                 article_title
@@ -20,7 +20,7 @@ const ArticlesID = (props) => (
                 uuid
   }
 }
-    `} variables = {{"uuid": `${props.uuid}`}}
+    `} variables = {{"uuid": `${props.uuid}`, "oneKeyID":`${props.oneKeyID}`}}
     >
         {({loading, error, data}) => {
             if (loading) return <p>Loading ...</p>;
