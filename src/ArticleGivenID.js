@@ -1,8 +1,8 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import Accordion from "./Accordion";
-import "./styles.css";
+import Accordion from 'react-bootstrap/Accordion';
+import Card from 'react-bootstrap/Card';
 
 
 const ArticlesID = (props) => (
@@ -30,22 +30,28 @@ const ArticlesID = (props) => (
             }
             
 
-             return data.getArticleById.map(({id,
-                author_name,
-                article_title,
-                article_abstract,
-                article_url,
-                citation_count,
-                co_authors,
-                individual_id_onekey,
-                uuid}) => (
-                <div key={id}>
-                    <Accordion
-                    title={`${article_title}. Citation Count: ${citation_count}`}
-                    content={article_abstract}
-                  />
-                </div>
-            ));
+            return (
+                <Accordion defaultActiveKey="0">
+            
+                  {data?.getArticleById.map((article, index) => (
+                    <Card key={index}>
+                      <Accordion.Toggle as={Card.Header} eventKey={index + ""} className="p-3 d-flex align-items-baseline justify-content-between" role="button" >
+                        <span className="faq__question">
+                        Title: {`${article.article_title}. Citation Count: ${article.citation_count}`}
+                        </span>
+                        <i className="icon icon-arrow-down ml-2 faq__icon-down"></i>
+                      </Accordion.Toggle>
+                      <Accordion.Collapse eventKey={index + ""}>
+                        <Card.Body>
+                        {article.article_abstract}
+                        </Card.Body>
+                      </Accordion.Collapse>
+                    </Card>
+                  ))}
+                </Accordion>
+              );
+
+
     
         }}
     </Query>

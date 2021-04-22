@@ -1,11 +1,11 @@
 import React from 'react'
 
-import { ExampleComponent } from 'hcp-article-module'
+import { Article } from 'hcp-article-module'
 import 'hcp-article-module/dist/index.css'
 import "./Accordion.css";
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  <Article oneKeyID="WDEM05745991" uri="http://localhost:5000/graphql"/>
 }
 
 export default App
